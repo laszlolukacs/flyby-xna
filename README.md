@@ -3,9 +3,9 @@ The XNA Flyby is an XNA powered flight game, originally created in 2012 as a hom
 
 ## Dependencies ##
 * [.NET 4.0 Framework](https://www.microsoft.com/en-us/download/details.aspx?id=17851)
-* [Visual Studio 2010](https://msdn.microsoft.com/en-us/library/dd831853(v=vs.100).aspx) with [SP1](https://www.microsoft.com/en-us/download/details.aspx?id=23691)
+* [Visual Studio 2010](https://msdn.microsoft.com/en-us/library/dd831853(v=vs.100).aspx) with [SP1](https://www.microsoft.com/en-us/download/details.aspx?id=23691) - newer VS versions can be buffed to open XNA projects, [details here](https://mxa.codeplex.com/releases/view/618279)
 * [XNA Game Studio 4.0 Refresh](https://www.microsoft.com/en-us/download/details.aspx?id=27598)
-* Highly recommended: [NShader](https://nshader.codeplex.com/) VS extension for HLSL syntax highlighting
+* Highly recommended: [NShader](https://nshader.codeplex.com/) extension for VS2010 / [HLSL Tools](https://github.com/tgjones/HlslTools) extension for VS2013/2015
 
 ## System Requirements ##
 * 1.4 GHz x86 processor
