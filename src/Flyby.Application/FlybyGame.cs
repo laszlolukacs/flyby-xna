@@ -169,12 +169,6 @@ namespace Flyby.Application
 
             this.Hud.IsHelpEnabled = false;
 
-            // TODO: repair this
-            //if (Keyboard.GetState().IsKeyDown(Keys.F1) || currentGamePadState.DPad.Up == ButtonState.Pressed)
-            //{
-            //    this.Hud.IsHelpEnabled = true;
-            //}
-
 #if DEBUG
             // toggles the drawing of the bounding boxes
             if (Keyboard.GetState().IsKeyDown(Keys.F2) && !this.lastKeyboardState.IsKeyDown(Keys.F2))
@@ -253,7 +247,6 @@ namespace Flyby.Application
             this.scene.Camera.AspectRatio = this.GraphicsDevice.Viewport.AspectRatio;
             this.scene.Draw(gameTime);
             this.Hud.Draw(gameTime);
-            //base.Draw(gameTime);
 
 #if DEBUG
             this._frames++;

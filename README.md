@@ -1,20 +1,21 @@
-# XNA Flight Game #
-The XNA Flyby is an XNA powered flight game, originally created in 2012 as a homework for a [course](https://www.aut.bme.hu/Course/VIAUJV01).
+# Flyby #
+Flyby is a [MonoGame](http://www.monogame.net/about/) powered flight game, originally started as a homework for a [course](https://www.aut.bme.hu/Course/VIAUJV01) in 2012.
 
 ## Dependencies ##
 * [.NET Core SDK 3.1.100](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+* Windows - Unfortunately [Custom Effects](http://www.monogame.net/documentation/2/?page=Custom_Effects) are not compiling on UNIX systems
 
 ## System Requirements ##
 * 1.4 GHz x86 processor
 * 512 MB memory
 * Shader Model 2.0 / OpenGL 2.0 capable video card with 128 MB memory and working OpenGL driver
-* Sound card
 * [.NET Core Desktop Runtime 3.1.0](https://dotnet.microsoft.com/download/dotnet-core/3.1)
 
 ## Summary of set up
 * `git clone git@github.com:laszlolukacs/flyby-xna.git <LOCAL_WORKING_DIR>`
-* Install the fonts from the `src/Flyby.Application/Contents/Fonts` directory
-* `dotnet restore`
+* Install the fonts from the `./src/Flyby.Application/Contents/Fonts` directory
+* Invoke `build.ps1` to compile the application
+* Invoke `dotnet ./src/application/Flyby.Application.dll`
 
 ## Basic Usage / How to extend
 TBD

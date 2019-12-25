@@ -59,8 +59,6 @@ namespace XnaFlyby.Game.Entities
             this.Height = height;
 
             this.IsHelpEnabled = false;
-
-            //this.HelpOverlay = helpOverlay; // TEXTURE2D
         }
 
         /// <summary>
@@ -82,15 +80,8 @@ namespace XnaFlyby.Game.Entities
             SpriteBatch.DrawString(SpriteFonts[1], Velocity.ToString("00.00"), new Vector2(Width - 200, Height - 40), Color.LightGreen);
 #endif
 
-            // TODO: fix this
-            //if (this.IsHelpEnabled)
-            //{
-            //    this.SpriteBatch.Draw(this.HelpOverlay, new Rectangle(0, (this.Height - this.Width) / 2, this.Width, this.Width), Color.White);
-            //}
-
 #if DEBUG
-            this.SpriteBatch.DrawString(this.SpriteFonts[2], string.Format("{00} FPS", this.FramesPerSecond), new Vector2(0, 0), Color.Red);
-            this.SpriteBatch.DrawString(this.SpriteFonts[2], string.Format("Rendering on {0}", this.AdapterName), new Vector2(0, 20), Color.Red);
+            this.SpriteBatch.DrawString(this.SpriteFonts[2], $"{this.FramesPerSecond} FPS", new Vector2(0, 0), Color.Red);
 #endif
 
             this.SpriteBatch.End();
