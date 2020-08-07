@@ -127,7 +127,6 @@ namespace XnaFlyby.Game.Entities
             throw new System.NotImplementedException();
         }
 
-        [Obsolete("The reflection method needs to be changed")]
         public void DrawReflection(Camera camera, float deltaT)
         {
             // Reflect the camera's properties across the water plane
