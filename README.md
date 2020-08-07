@@ -14,8 +14,8 @@ Flyby is a [MonoGame](http://www.monogame.net/about/) powered flight game, origi
 ## Summary of set up
 * `git clone git@github.com:laszlolukacs/flyby-xna.git <LOCAL_WORKING_DIR>`
 * `dotnet tool install --global dotnet-mgcb --version 3.8.0.1375-develop`
-* (on UNIX) Copy the `Assimp64.so` from the `/home/[username]/.dotnet/tools/.store/dotnet-mgcb/3.8.0.1375-develop/dotnet-mgcb/3.8.0.1375-develop/tools/netcoreapp3.1/any` directory to the `./src.FlybBy.Application/Contents` directory, this is a MGCB [quirk](https://community.monogame.net/t/problem-with-fbximporter-in-3-8-0-1375-develop-build/12777)
-* (on Windows) Copy the `Assimp64.dll` from the `C:\Users\[Username]\.dotnet\tools\.store\dotnet-mgcb\3.8.0.1375-develop\dotnet-mgcb\3.8.0.1375-develop\tools\netcoreapp3.1\any` folder to the `./src.FlybBy.Application/Contents` folder, this is a MGCB [quirk](https://community.monogame.net/t/problem-with-fbximporter-in-3-8-0-1375-develop-build/12777)
+* (on UNIX) Copy the `Assimp64.so` from the `/home/[username]/.dotnet/tools/.store/dotnet-mgcb/3.8.0.1375-develop/dotnet-mgcb/3.8.0.1375-develop/tools/netcoreapp3.1/any` directory to the `./res/Content` directory, this is a MGCB [quirk](https://community.monogame.net/t/problem-with-fbximporter-in-3-8-0-1375-develop-build/12777)
+* (on Windows) Copy the `Assimp64.dll` from the `C:\Users\[Username]\.dotnet\tools\.store\dotnet-mgcb\3.8.0.1375-develop\dotnet-mgcb\3.8.0.1375-develop\tools\netcoreapp3.1\any` folder to the `.\res\Content` folder, this is a MGCB [quirk](https://community.monogame.net/t/problem-with-fbximporter-in-3-8-0-1375-develop-build/12777)
 * Install the fonts from the `./src/Flyby.Application/Contents/Fonts` directory
 * Invoke `build.ps1` to compile the application
 * Invoke `dotnet ./bld/application/Flyby.Application.dll`
@@ -33,7 +33,7 @@ TBD
 TBD
 
 ## Aircraft controls
-* **A**/**Z** - Increase/decrease **throttle**, which affects aircraft speed and climbing ability
+* **A**/**Z** - Increase/decrease **thrust**, which affects aircraft speed and climbing ability
 * **Up**/**Down** arrows - **Pitch** up/down the aircraft
 * **Left**/**Right** arrows - **Roll** left/right the aircraft
 * Enter - Resets the aircraft to the starting position

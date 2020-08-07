@@ -1,7 +1,7 @@
 
 #----------------------------- Global Properties ----------------------------#
 
-/outputDir:bin/$(Platform)
+/outputDir:../../src/Flyby.Application/bin/$(Platform)
 /intermediateDir:obj/$(Platform)
 /platform:DesktopGL
 /config:
