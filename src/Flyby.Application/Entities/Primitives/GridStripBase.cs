@@ -119,7 +119,11 @@ namespace XnaFlyby.Library.Entities.Primitives
         {
             this.Device.SetVertexBuffer(this.vertexBuffer);
             this.Device.Indices = this.indexBuffer;
+#if MSXNA
+            this.Device.DrawIndexedPrimitives(PrimitiveType.TriangleStrip, 0, 0, this.Width * this.Height, 0, (this.Width * 2 + 1) * (this.Height - 1) - 2);
+#else
             this.Device.DrawIndexedPrimitives(PrimitiveType.TriangleStrip, 0, 0, (this.Width * 2 + 1) * (this.Height - 1) - 2);
+#endif
         }
 
         /// <summary>
@@ -132,7 +136,11 @@ namespace XnaFlyby.Library.Entities.Primitives
         {
             this.Device.SetVertexBuffer(this.vertexBuffer);
             this.Device.Indices = this.indexBuffer;
+#if MSXNA
+            this.Device.DrawIndexedPrimitives(PrimitiveType.TriangleStrip, 0, 0, this.Width * this.Height, 0, (this.Width * 2 + 1) * (this.Height - 1) - 2);
+#else
             this.Device.DrawIndexedPrimitives(PrimitiveType.TriangleStrip, 0, 0, (this.Width * 2 + 1) * (this.Height - 1) - 2);
+#endif
         }
 
         /// <summary>

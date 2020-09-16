@@ -117,7 +117,12 @@ namespace XnaFlyby.Library.Entities.Primitives
             this.Effect.Parameters["Projection"].SetValue(camera.Projection);
             this.Effect.CurrentTechnique.Passes[0].Apply();
 
+#if MSXNA
+            this.Device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, this.vertexBuffer.VertexCount, 0, this.indexBuffer.IndexCount / 3);
+#else
             this.Device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, this.indexBuffer.IndexCount / 3);
+#endif
+
         }
 
         /// <summary>
@@ -137,7 +142,11 @@ namespace XnaFlyby.Library.Entities.Primitives
             this.Effect.Parameters["Projection"].SetValue(projection);
             this.Effect.CurrentTechnique.Passes[0].Apply();
 
+#if MSXNA
+            this.Device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, this.vertexBuffer.VertexCount, 0, this.indexBuffer.IndexCount / 3);
+#else
             this.Device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, this.indexBuffer.IndexCount / 3);
+#endif
         }
 
         /// <summary>

@@ -19,7 +19,7 @@ namespace Flyby.Application
         private SpriteBatch spriteBatch;
 
         private Scene scene;
-        private Hud Hud;
+        private Hud hud;
         private Jet localPlayer;
 
         private KeyboardState lastKeyboardState = new KeyboardState(null);
@@ -68,15 +68,18 @@ namespace Flyby.Application
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
-            this.Hud = new Hud(
+            this.hud = new Hud(
                 this.spriteBatch,
                 this.Window.ClientBounds.Width,
                 this.Window.ClientBounds.Height);
-            this.Hud.SpriteFonts.Add(this.Content.Load<SpriteFont>("Fonts/SquareFont"));
-            this.Hud.SpriteFonts.Add(this.Content.Load<SpriteFont>("Fonts/Alien Encounters"));
-#if DEBUG
-            this.Hud.AdapterName = this.GraphicsDevice.Adapter.Description;
-            this.Hud.SpriteFonts.Add(this.Content.Load<SpriteFont>("Fonts/Bitstream Vera Sans Mono"));
+#if MSXNA
+            this.hud.SpriteFonts.Add(this.Content.Load<SpriteFont>("Fonts/SquareFont.xna"));
+            this.hud.SpriteFonts.Add(this.Content.Load<SpriteFont>("Fonts/Alien Encounters.xna"));
+            this.hud.SpriteFonts.Add(this.Content.Load<SpriteFont>("Fonts/Bitstream Vera Sans Mono.xna"));
+#else
+            this.hud.SpriteFonts.Add(this.Content.Load<SpriteFont>("Fonts/SquareFont"));
+            this.hud.SpriteFonts.Add(this.Content.Load<SpriteFont>("Fonts/Alien Encounters"));
+            this.hud.SpriteFonts.Add(this.Content.Load<SpriteFont>("Fonts/Bitstream Vera Sans Mono"));
 #endif
 
             var ocean = new Ocean(
@@ -84,7 +87,6 @@ namespace Flyby.Application
                 this.Content.Load<Effect>("Shaders/SM20/WaterReflection"),
                 this.Content.Load<Texture2D>("Textures/WaterNormal"),
                 this.Content.Load<SoundEffect>("Audio/SFX/OceanLoop"));
-            //Ocean ocean = new Ocean(GraphicsDevice, Content.Load<Effect>("Shaders/SM20/WaterCubeMap"), Content.Load<TextureCube>("Textures/SkyCubeMap"), Content.Load<Texture2D>("Textures/WaterNormal"), Content.Load<SoundEffect>("Sounds/OceanLoop"));
             ocean.TesselateNormalTextured();
             ocean.Initialize();
 
@@ -108,14 +110,17 @@ namespace Flyby.Application
             this.localPlayer = new Jet(
                 this.GraphicsDevice,
                 this,
+#if MSXNA
+                this.Content.Load<Model>("Models/MiG-21bis/MiG-21bis.xnacompat"),
+#else
                 this.Content.Load<Model>("Models/MiG-21bis/MiG-21bis"),
+#endif
                 this.Content.Load<Texture2D>("Models/MiG-21bis/Default"),
                 this.Content.Load<Texture2D>("Models/MiG-21bis/MiG-21bis_N0"),
                 this.Content.Load<Texture2D>("Models/MiG-21bis/MiG-21bis_S0"),
                 this.Content.Load<SoundEffect>("Audio/SFX/MiG-21/Mig-21_EngineLoop"),
                 this.Content.Load<SoundEffect>("Audio/SFX/MiG-21/Mig-17_IdleLoop"))
             {
-                //Effect = this.Content.Load<Effect>("Shaders/SM20/BaseNormalMapping"),
                 Effect = this.Content.Load<Effect>("Shaders/SM20/BaseLighting"),
                 SplashSound = this.Content.Load<SoundEffect>("Audio/SFX/HeavySplashSound"),
                 ExplosionSound = this.Content.Load<SoundEffect>("Audio/SFX/ExplosionSound")
@@ -167,7 +172,7 @@ namespace Flyby.Application
                 this.Reset();
             }
 
-            this.Hud.IsHelpEnabled = false;
+            this.hud.IsHelpEnabled = false;
 
 #if DEBUG
             // toggles the drawing of the bounding boxes
@@ -197,15 +202,15 @@ namespace Flyby.Application
             var jetDeltaRotation = Quaternion.CreateFromAxisAngle(new Vector3(-1.0f, 0.0f, 0.0f), turningAngleX) * Quaternion.CreateFromAxisAngle(new Vector3(0.0f, 1.0f, 0.0f), pitchAngleY);
             this.localPlayer.Control(jetDeltaRotation, throttle * acceleration);
 
-            this.Hud.Width = this.GraphicsDevice.Viewport.Width;
-            this.Hud.Height = this.GraphicsDevice.Viewport.Height;
+            this.hud.Width = this.GraphicsDevice.Viewport.Width;
+            this.hud.Height = this.GraphicsDevice.Viewport.Height;
 
 #if DEBUG
-            this.Hud.TerrainHeight = this.localPlayer.CurrentTerrainHeight;
+            this.hud.TerrainHeight = this.localPlayer.CurrentTerrainHeight;
 #endif
 
-            this.Hud.Altitude = this.localPlayer.Position.Z;
-            this.Hud.Velocity = this.localPlayer.Velocity;
+            this.hud.Altitude = this.localPlayer.Position.Z;
+            this.hud.Velocity = this.localPlayer.Velocity;
 
             var cameraPosition = new Vector3(12.0f, 0.0f, 2.8f);
             cameraPosition = Vector3.Transform(cameraPosition, Matrix.CreateFromQuaternion(this.scene.Camera.Rotation));
@@ -238,7 +243,7 @@ namespace Flyby.Application
         protected override void Draw(GameTime gameTime)
         {
             var ocean = (Ocean)this.scene.Renderables.LastOrDefault();
-            ocean?.DrawReflection(this.scene.Camera, (float)gameTime.TotalGameTime.TotalSeconds);
+            ocean.DrawReflection(this.scene.Camera, (float)gameTime.TotalGameTime.TotalSeconds);
 
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
             GraphicsDevice.BlendState = BlendState.Opaque;
@@ -246,15 +251,15 @@ namespace Flyby.Application
 
             this.scene.Camera.AspectRatio = this.GraphicsDevice.Viewport.AspectRatio;
             this.scene.Draw(gameTime);
-            this.Hud.Draw(gameTime);
+            this.hud.Draw(gameTime);
 
 #if DEBUG
             this._frames++;
             int seconds = DateTime.Now.Second;
             if (seconds != this._time)
             {
-                this.Window.Title = $"XNA Flyby Game ({this._frames} FPS)";
-                this.Hud.FramesPerSecond = this._frames;
+                this.Window.Title = string.Format("Flyby Game ({0} FPS)", this._frames);
+                this.hud.FramesPerSecond = this._frames;
                 this._frames = 0;
                 this._time = seconds;
             }

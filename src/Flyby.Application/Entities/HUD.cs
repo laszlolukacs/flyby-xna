@@ -24,7 +24,6 @@ namespace XnaFlyby.Game.Entities
         public IList<SpriteFont> SpriteFonts { get; set; }
 
 #if DEBUG
-        public string AdapterName { get; set; }
         public int FramesPerSecond { get; set; }
 #endif
         public int Width { get; set; }
@@ -81,7 +80,7 @@ namespace XnaFlyby.Game.Entities
 #endif
 
 #if DEBUG
-            this.SpriteBatch.DrawString(this.SpriteFonts[2], $"{this.FramesPerSecond} FPS", new Vector2(0, 0), Color.Red);
+            this.SpriteBatch.DrawString(this.SpriteFonts[2], string.Format("{0} FPS", this.FramesPerSecond), new Vector2(0, 0), Color.Red);
 #endif
 
             this.SpriteBatch.End();
