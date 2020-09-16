@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{49B6FD62-E254-4EEF-B1A9-A860760EBF4A}"
+	ProjectSection(SolutionItems) = preProject
+		license.md = license.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flyby.Application.Xna", "src\Flyby.Application\Flyby.Application.Xna.csproj", "{2385146B-0639-4E4E-A821-DD4B91A08511}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flyby.XnaContent", "res\Content\Flyby.XnaContent.contentproj", "{17AF3690-34EC-4343-BD0C-C22466CF6AB0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2385146B-0639-4E4E-A821-DD4B91A08511}.Debug|x86.ActiveCfg = Debug|x86
+		{2385146B-0639-4E4E-A821-DD4B91A08511}.Debug|x86.Build.0 = Debug|x86
+		{2385146B-0639-4E4E-A821-DD4B91A08511}.Release|x86.ActiveCfg = Release|x86
+		{2385146B-0639-4E4E-A821-DD4B91A08511}.Release|x86.Build.0 = Release|x86
+		{17AF3690-34EC-4343-BD0C-C22466CF6AB0}.Debug|x86.ActiveCfg = Debug|x86
+		{17AF3690-34EC-4343-BD0C-C22466CF6AB0}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

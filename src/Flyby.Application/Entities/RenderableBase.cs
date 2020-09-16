@@ -40,7 +40,7 @@ namespace XnaFlyby.Library.Entities
         /// <summary>
         /// Gets or sets the clipping plane vector.
         /// </summary>
-        public Vector4? ClippingPlane { get; set; } = null;
+        public Vector4? ClippingPlane { get; set; }
 
         /// <summary>
         /// Initializes this instance.

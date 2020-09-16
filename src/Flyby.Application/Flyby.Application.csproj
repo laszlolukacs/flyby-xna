@@ -5,15 +5,26 @@
     <RootNamespace>Flyby.Application</RootNamespace>
     <OutputType>WinExe</OutputType>
     <ApplicationIcon>Game.ico</ApplicationIcon>
+    <Authors>Laszlo Lukacs</Authors>
+    <Company>Laszlo Lukacs</Company>
+    <Product>Flyby Game</Product>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;MONOGAME</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE;MONOGAME</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
-    <MonoGameContentReference Include="**\*.mgcb" />
+    <MonoGameContentReference Include="..\..\**\*.mgcb" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MonoGame.Content.Builder" Version="3.7.0.9" />
-    <PackageReference Include="MonoGame.Framework.DesktopGL.Core" Version="3.7.0.7" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1375-develop" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1375-develop" />
   </ItemGroup>
 
 </Project>
