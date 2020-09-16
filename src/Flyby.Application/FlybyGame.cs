@@ -37,7 +37,7 @@ namespace Flyby.Application
                 graphics.PreferredBackBufferHeight = (Window.ClientBounds.Height > 0 ? Window.ClientBounds.Height : 300);
             };
 
-            this.Window.Title = "XNA Flyby Game";
+            this.Window.Title = "Flyby Game";
         }
 
         /// <summary>
