@@ -22,7 +22,7 @@ texture ReflectionMap;
 
 sampler2D ReflectionMapSampler = sampler_state
 {
-	texture = <ReflectionMap>;
+    texture = (ReflectionMap);
 	MinFilter = LINEAR;
 	MagFilter = LINEAR;
 	AddressU = CLAMP;			// Address Mode for U Coordinates, should be MIRROR for better scenery on the edges
@@ -38,7 +38,7 @@ texture NormalMap;
 
 sampler2D NormalMapSampler = sampler_state
 {
-	texture = <NormalMap>;
+    texture = (NormalMap);
 	MinFilter = ANISOTROPIC;
 	MagFilter = ANISOTROPIC;
 	MipFilter = LINEAR;
@@ -82,7 +82,7 @@ VertexShaderOutput VS_WaterReflection(VertexShaderInput input)
 float4 PS_WaterReflection(VertexShaderOutput input) : COLOR0
 {
 	// required for specular
-	float3 viewDirection = normalize(CameraPosition - input.WorldPosition);
+	float3 viewDirection = normalize(CameraPosition - input.WorldPosition.xyz);
 
 	// converts a 3D position to 2D screen position
 	float2 transientPosition = input.ReflectedPosition.xy / input.ReflectedPosition.w;

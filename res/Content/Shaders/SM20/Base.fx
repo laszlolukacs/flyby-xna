@@ -16,7 +16,7 @@ texture2D DiffuseTexture;
 
 sampler2D DiffuseTextureSampler = sampler_state
 {
-	texture = <DiffuseTexture>;
+    texture = (DiffuseTexture);
 	MinFilter = ANISOTROPIC;	// Minification Filter
 	MagFilter = ANISOTROPIC;	// Magnification Filter
 	MipFilter = LINEAR;			// Mip-mapping
@@ -74,7 +74,6 @@ technique BaseTechnique
 {
 	pass Pass0
 	{
-		// TODO: set renderstates here.
 		VertexShader = compile vs_2_0 VS_Base();
 		PixelShader = compile ps_2_0 PS_Base();
 	}

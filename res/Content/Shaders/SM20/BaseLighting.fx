@@ -24,7 +24,7 @@ texture2D DiffuseTexture;
 
 sampler2D DiffuseTextureSampler = sampler_state
 {
-	texture = <DiffuseTexture>;
+    texture = (DiffuseTexture);
 	MinFilter = ANISOTROPIC;	// Minification Filter
 	MagFilter = ANISOTROPIC;	// Magnification Filter
 	MipFilter = LINEAR;			// Mip-mapping
@@ -62,7 +62,7 @@ VertexShaderOutput VS_BaseLighting(VertexShaderInput input)
 	output.Normal = mul(input.Normal, World);
 	output.Texture = input.Texture;
 
-	output.ViewDirection = worldPosition - CameraPosition;
+	output.ViewDirection = worldPosition.xyz - CameraPosition;
 
 	return output;
 }
@@ -109,7 +109,6 @@ technique BaseLightingTechnique
 {
 	pass Pass0
 	{
-		// TODO: set renderstates here.
 		VertexShader = compile vs_2_0 VS_BaseLighting();
 		PixelShader = compile ps_2_0 PS_BaseLighting();
 	}

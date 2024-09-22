@@ -2,8 +2,6 @@
 // See license.md for details.
 // </copyright>
 
-using System;
-
 namespace XnaFlyby.Game.Entities
 {
     using System.Collections.Generic;
@@ -23,6 +21,11 @@ namespace XnaFlyby.Game.Entities
         /// The reflection target
         /// </summary>
         private readonly RenderTarget2D reflectionTarget;
+
+        /// <summary>
+        /// The camera used for the reflection
+        /// </summary>
+        private readonly Camera reflectedCamera = new Camera();
 
         /// <summary>
         /// Gets or sets the normal map.
@@ -62,32 +65,9 @@ namespace XnaFlyby.Game.Entities
 
             // the reflection rendertarget will be a 512px texture
             const int renderTargetSize = 512;
-            this.reflectionTarget = new RenderTarget2D(device, renderTargetSize, renderTargetSize, false, SurfaceFormat.Color, DepthFormat.Depth24, 1, RenderTargetUsage.PreserveContents);
-            this.Effect.Parameters["ViewportWidth"].SetValue((float)this.reflectionTarget.Width);   //device.Viewport.Width);
-            this.Effect.Parameters["ViewportHeight"].SetValue((float)this.reflectionTarget.Height);  //device.Viewport.Height);
-
-            this.Initialize();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the ocean class which uses a cube map reflection shader.
-        /// </summary>
-        /// <param name="device">Graphics device</param>
-        /// <param name="waterEffect">Cube map reflection shader</param>
-        /// <param name="skyCubeMap">Cube map</param>
-        /// <param name="normalMap">Normal map</param>
-        /// <param name="loop">Looping sound effect</param>
-        public Ocean(GraphicsDevice device, Effect waterEffect, TextureCube skyCubeMap, Texture2D normalMap, SoundEffect loop)
-            : base(device, new Vector3(-2560.0f, -2560.0f, 0.0f), 40.0f, 128, 128)
-        {
-            this.Effect = waterEffect;
-            this.NormalMap = normalMap;
-            this.SkyCubeMap = skyCubeMap;
-            this.WaveLoop = loop.CreateInstance();
-
-            this.ReflectedEntities = new List<RenderableBase>();
-
-            this.Effect.Parameters["ReflectionMap"].SetValue(this.SkyCubeMap);
+            this.reflectionTarget = new RenderTarget2D(device, renderTargetSize, renderTargetSize, true, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+            this.Effect.Parameters["ViewportWidth"].SetValue((float)this.reflectionTarget.Width);
+            this.Effect.Parameters["ViewportHeight"].SetValue((float)this.reflectionTarget.Height);
 
             this.Initialize();
         }
@@ -139,22 +119,19 @@ namespace XnaFlyby.Game.Entities
             Vector3 reflectedUp = camera.Up;
             reflectedUp.Z = -reflectedUp.Z;
 
-            // creates a temporary camera to render the reflected scene
-            var reflectedCamera = new Camera
-            {
-                AspectRatio = camera.AspectRatio,
-                Position = reflectedCameraPosition,
-                Target = reflectedCameraTarget,
-                Up = reflectedUp
-            };
+            // sets up the camera for the reflected scene
+            this.reflectedCamera.AspectRatio = camera.AspectRatio;
+            this.reflectedCamera.Position = reflectedCameraPosition;
+            this.reflectedCamera.Target = reflectedCameraTarget;
+            this.reflectedCamera.Up = reflectedUp;
 
             this.Effect.Parameters["ReflectedView"].SetValue(reflectedCamera.View);
 
             Vector4 clipPlane = new Vector4(0.0f, 0.0f, 1.0f, -0.00001f);
 
             this.Device.SetRenderTarget(this.reflectionTarget);
-            this.Device.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-            this.Device.BlendState = BlendState.NonPremultiplied;
+            this.Device.DepthStencilState = DepthStencilState.Default;
+            this.Device.BlendState = BlendState.Opaque;
             this.Device.Clear(Color.LightCoral);
 
             foreach (var entity in this.ReflectedEntities)

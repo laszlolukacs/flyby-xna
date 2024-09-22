@@ -234,7 +234,6 @@ namespace Flyby.Application
             base.Update(gameTime);
 
             this.lastMouseState = currentMouseState;
-            //this.lastGamePadState = currentGamePadState;
             this.lastKeyboardState = Keyboard.GetState();
 
             base.Update(gameTime);
