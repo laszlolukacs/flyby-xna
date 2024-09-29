@@ -82,7 +82,7 @@ namespace XnaFlyby.Game.Entities
 
 #if DEBUG
             this.SpriteBatch.DrawString(this.SpriteFonts[2], string.Format("{0} FPS", this.FramesPerSecond), new Vector2(0, 0), Color.Red);
-            if (!string.IsNullOrWhiteSpace(this.AdapterName)
+            if (!string.IsNullOrWhiteSpace(this.AdapterName))
             {
                 this.SpriteBatch.DrawString(this.SpriteFonts[2], string.Format("Rendering on {0}", this.AdapterName), new Vector2(0, 20), Color.Red);
             }
