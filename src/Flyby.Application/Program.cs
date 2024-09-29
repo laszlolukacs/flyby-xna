@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="Program.cs" company=".">
+// See LICENSE for details.
+// </copyright>
+
+using System;
 
 namespace Flyby.Application
 {

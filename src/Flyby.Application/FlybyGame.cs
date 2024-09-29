@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="FlybyGame.cs" company=".">
+// See LICENSE for details.
+// </copyright>
+
+using System;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;

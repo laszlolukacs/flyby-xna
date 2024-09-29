@@ -1,5 +1,5 @@
 ﻿// <copyright file="Ocean.cs" company=".">
-// See license.md for details.
+// See LICENSE for details.
 // </copyright>
 
 namespace XnaFlyby.Game.Entities
