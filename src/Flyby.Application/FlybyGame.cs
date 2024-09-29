@@ -76,6 +76,10 @@ namespace Flyby.Application
                 this.spriteBatch,
                 this.Window.ClientBounds.Width,
                 this.Window.ClientBounds.Height);
+#if DEBUG
+            this.hud.AdapterName = this.GraphicsDevice.Adapter.Description;
+#endif
+
 #if MSXNA
             this.hud.SpriteFonts.Add(this.Content.Load<SpriteFont>("Fonts/SquareFont.xna"));
             this.hud.SpriteFonts.Add(this.Content.Load<SpriteFont>("Fonts/Alien Encounters.xna"));
