@@ -26,6 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TrimmerRootAssembly Include="MonoGame.Framework" />
+    <TrimmerRootAssembly Include="mscorlib" />
     <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
   </ItemGroup>
 
