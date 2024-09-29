@@ -1,5 +1,5 @@
 ﻿// <copyright file="AssemblyInfo.cs" company=".">
-// See license.md for details.
+// See LICENSE for details.
 // </copyright>
 
 #if MSXNA
@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 #endif
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("Laszlo Lukacs")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCopyright("Copyright (C) 2012 Laszlo Lukacs, Released under GPL v3")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

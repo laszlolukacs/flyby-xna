@@ -1,5 +1,5 @@
 ﻿// <copyright file="Camera.cs" company=".">
-// See license.md for details.
+// See LICENSE for details.
 // </copyright>
 
 namespace XnaFlyby.Library.Components
